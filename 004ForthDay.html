@@ -3,16 +3,127 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>4日目</title>
+    <style>
+        body{
+            font-family: sans-serif;
+            margin: 0;
+            padding: 1em;
+            background: #f5f5f5;
+        }
+        h1, h2{
+            color: #333;
+        }
+        .section {
+            background: #fff;
+            padding: 1em;
+            margin-bottom: 1em;
+            border-radius: 8px;
+            box-shadow: 0 0 5px raba(0,0,0,0.1);
+        }
+        .checklist label {
+            display: block;
+            margin-bottom: 0.5em;
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+            font-size: 1em;
+        }
+        img.map {
+            width: 100%;
+            border-radius: 6px;
+        }
+        a{
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        button{
+            margin-top: 0.5em;
+            padding: 0.5em 1em;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+        }
+    </style>
 </head>
 <body>
     <header>
         <h1>4日目(4/30_水)</h1>
     </header>
-    <p>タイムスケジュール: <br>09:00 - 出発<br>12:00 - 到着<br>14:00 - ホテルチェックイン</p>
-    <p>飛行機情報: ABC航空 123便</p>
-    <p>目的地ホテル: サンプルホテル</p>    
-    <footer>
-        <a href="000tavel_sch.html">戻る</a>
-    </footer>
+     <div class="section">
+        <h2>行動予定</h2>
+        <ul>
+            <li>10:00 - ホテルチェックアウト</li>
+            <li>12:00 - 昼飯</li>
+            <li>13:30 - 射撃体験</li>
+            <li>∞ - ホテルチェックイン</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>ホテル地図</h2>
+        <img class="map" src="map_day4.png">
+            <li><a href="https://www.google.co.jp/maps/place/Blue+Carina+inn+Hotel+Phuket/@7.8968719,98.3725838,15.75z/data=!4m10!3m9!1s0x305031b87c8fd2a5:0x16dc1ec00d686b51!5m3!1s2025-04-28!4m1!1i2!8m2!3d7.8979135!4d98.3663099!16s%2Fg%2F1tdqqzkz?entry=ttu&g_ep=EgoyMDI1MDQxNi4xIKXMDSoASAFQAw%3D%3D"googlemap></a></li>
+    </div>
+
+    <div class="section">
+        <h2>ホテル情報</h2>
+        <ul>
+            <li>ホテル：ブルーカリーナ</li>
+            <li>โรงแรมบลู คารินา</li>
+       </ul>
+    </div>
+
+    <div class="section checklist">
+        <h2>持ち物チェック</h2>
+        <label><input type="checkbox" class="item">パスポート</label>
+        <label><input type="checkbox" class="item">パスポート</label>        
+        <label><input type="checkbox" class="item">パスポート</label>
+        <label><input type="checkbox" class="item">パスポート</label>
+        <label><input type="checkbox" class="item">パスポート</label>
+        <label><input type="checkbox" class="item">パスポート</label>
+        <label><input type="checkbox" class="item">パスポート</label>
+        <label><input type="checkbox" class="item">パスポート</label>
+        <label><input type="checkbox" class="item">パスポート</label>
+    </div>
+    
+    <div class="section">
+        <h2>メモ</h2>
+        <textarea id="note" placeholder="ここにメモを入力..."></textarea>
+        <button onclick="saveNote()">保存</button>
+    </div>
+
+    <div class="section">
+        <h2>リンク</h2>
+        <ul>
+            <li><a href="flight_4.html">フライト情報</a></li>
+            <li><a href="hotel_4.html">ホテル情報</a></li>
+            <li><a href="000tavel_sch.html">ホームに戻る</a></li>
+        </ul>
+    </div>
+
+    <script>
+        // チェックリスト保存機能
+        document.querySelectorAll(".item").forEach((checkbox, index) => {
+            //index大丈夫か確認！！
+            const key = "checkbox_day4_" + index;
+            checkbox.checkd = localStorage.getItem(key) ==="true";
+            checkbox.addEventListener("change", () => {
+                localStorage.setItem(key,checkbox.checked);
+            })
+        })
+        
+        //メモ保存機能
+        const note = document.getElementById("note");
+        note.value = localStorage.getItem("note_day4") || "";
+        function saveNote() {
+            localStorage.setItem("note_day4", note.value);
+            alert("保存しました！");
+        }
+    </script>
 </body>
 </html>
